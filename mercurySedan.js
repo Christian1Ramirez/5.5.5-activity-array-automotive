@@ -1,31 +1,8 @@
 //this includes the vehicle class as a module
 const VehicleModule = require("./vehicle.js");
 
-//this shows how to call from this module...
-let v = new VehicleModule.Vehicle(
-  "Mecury",
-  "Sedan",
-  "1965",
-  "color",
-  "mileage"
-);
-console.log(v.make);
-
-let mercurySedan = new Car.Vehicle(
-  "Mecury",
-  "Sedan",
-  "1965",
-  "color",
-  "mileage",
-  5,
-  160,
-  10,
-  30000
-);
-console.log(mercurySedan.make);
-
 //part of array automotive
-class Car extends Vehicle {
+class Car extends VehicleModule.Vehicle {
   constructor(
     make,
     model,
@@ -35,13 +12,13 @@ class Car extends Vehicle {
     maxPass,
     maxSpeed,
     fuel,
-    schService
+    scheduleService
   ) {
     super(make, model, year, color, mileage);
     this.maxPass = maxPass;
     this.maxSpeed = maxSpeed;
     this.fuel = fuel;
-    this.schService = schService;
+    this.scheduleService = scheduleService;
   }
   //check if the number of passengers are not exceeding the max
   loadPassenger(num) {
@@ -65,11 +42,34 @@ class Car extends Vehicle {
   }
 
   //check mileage for service
-  schService(mileage) {
-    if (mileage > this.schService) {
+  scheduleService(mileage) {
+    if (mileage > this.scheduleService) {
       return true;
     } else {
       return false;
     }
   }
 }
+
+//this shows how to call from this module...
+let v = new VehicleModule.Vehicle(
+  "Mercury",
+  "Sedan",
+  "1965",
+  "color",
+  "mileage"
+);
+console.log(v.make);
+
+let mercurySedan = new Car(
+  "Mercury",
+  "Sedan",
+  "1965",
+  "color",
+  "mileage",
+  5,
+  160,
+  10,
+  30000
+);
+console.log(mercurySedan.make);
